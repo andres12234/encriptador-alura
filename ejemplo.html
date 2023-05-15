@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="utf-8">        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<header>
+    <img src="/Logo.png">
+</header>
+
+<main>
+    <ul>
+        <li class="respuesta1">
+            <select id="accion">
+                <option value="encriptar">Encriptar</option>
+                <option value="desencriptar">Desencriptar</option>
+            </select>
+            <input type="text" id="texto-encriptar"> 
+            <button id="ejecutar">Ejecutar</button>
+        </li>
+        <li class="respuesta">
+            <img src="/Muñeco.png">
+        </li>
+        <li>
+            <div id="mostrar-input"></div>
+        </li>
+    </ul>
+</main>
+
+<script>
+    var boton = document.getElementById("ejecutar");
+    boton.addEventListener("click", function(){
+        var accion = document.getElementById("accion").value;
+        var texto = document.getElementById("texto-encriptar").value;
+        var resultado = "";
+
+        if (accion === "encriptar") {
+            for (var i = 0; i < texto.length; i++) {
+                var letra = texto[i];
+
+                if (letra === "a"){
+                    resultado += "ai";
+                }
+                else if (letra === "i"){
+                    resultado += "imes";
+                }
+                else if (letra === "o"){
+                    resultado += "ober";
+                }
+                else if (letra === "u"){
+                    resultado += "ufat";
+                }
+                else {
+                    resultado += letra;
+                }
+            }
+        }
+        else if (accion === "desencriptar") {
+            for (var i = 0; i < texto.length; i += 4) {
+                var letraEncriptada = texto.substring(i, i+4);
+
+                if (letraEncriptada === "ai"){
+                    resultado += "a";
+                }
+                else if (letraEncriptada === "imes"){
+                    resultado += "i";
+                }
+                else if (letraEncriptada === "o"){
+                    resultado += "o";
+                }
+                else if (letraEncriptada === "ufat"){
+                    resultado += "u";
+                }
+                else{
+                    resultado += letraEncriptada;
+                }
+            }
+        }
+
+        var output = document.getElementById("mostrar-input");
+        output.textContent = resultado;
+    });
+</script>
